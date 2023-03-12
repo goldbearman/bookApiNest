@@ -1,32 +1,29 @@
-import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
+import {Prop, Schema, SchemaFactory, raw} from '@nestjs/mongoose';
+import {Document, Schema as MongooseSchema} from 'mongoose';
 
-import { User } from './user.schema';
-import { Location } from '../interfaces/location';
 
-export type TodoDocument = Todo & Document;
+export type BookDocument = Book & Document;
 
 @Schema()
-export class Todo {
-  @Prop({ required: true })
-  public title: string;
+export class Book {
+    @Prop({required: true})
+    public title: string;
 
-  @Prop()
-  public description: string;
+    @Prop({required: true})
+    public description: string;
 
-  @Prop()
-  public text: string;
+    @Prop({default:""})
+    authors: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
-  user: User;
+    @Prop({default:""})
+    favorite: string;
 
-  @Prop(
-    raw({
-      latitude: { type: Number },
-      longitude: { type: Number },
-    }),
-  )
-  public location: Location;
+    @Prop({default:""})
+    fileCover: string;
+
+    @Prop({default:""})
+    fileName: string;
+
 }
 
-export const TodoSchema = SchemaFactory.createForClass(Todo);
+export const BookSchema = SchemaFactory.createForClass(Book);
