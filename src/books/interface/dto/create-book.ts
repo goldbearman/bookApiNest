@@ -1,5 +1,4 @@
-export interface CreateBookDto{
-    title:string;
-    description:string;
-
+export interface CreateBookDto {
+  title: string;
+  description: string;
 }
